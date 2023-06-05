@@ -18,6 +18,7 @@ tbody td {
     border-left: 3px solid #dddddd;
     border-right: 3px solid #dddddd;
     text-align: center;
+    font-size: 20px;
 }
 
 tbody tr:nth-of-type(even) {
