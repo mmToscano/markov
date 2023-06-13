@@ -6,6 +6,13 @@ let matrizDeEstado = [];
 let matrizDeResultado = [];
 
 function multiplicarMatrizes(){
+
+    //resetar valores anteriores
+    matrizDeTransicao = [[],[],[]];
+    matrizDeEstado = [];
+    matrizDeResultado = [];
+    
+
     //loop para pegar a info da matriz de transição
     for(let linha = 0; linha < cs(".matrizDeTransicao tr").length; linha++){
         for(let colunaCelula = 0; colunaCelula < cs(".matrizDeTransicao tr")[linha].querySelectorAll("td").length; colunaCelula++){
@@ -22,6 +29,20 @@ function multiplicarMatrizes(){
         matrizDeEstado.push(valorCelula)
     }
 
+    //testar para ver se os valores não passam de 100
+    matrizDeTransicao.forEach((item, index) =>{
+        if(somaVetor(item) != 100){
+            var posicao = index  + 1;
+            alert("Valor diferente de 100 na linha " + posicao);
+            return 0;
+        }
+    })
+
+    if(somaVetor(matrizDeEstado) != 100){
+        alert("Valor diferente de 100 no vetor de estado");
+        return 0;
+    }
+
     //multiplicar matrizes
     matrizDeResultado[0] = 0;
     matrizDeResultado[1] = 0;
@@ -33,17 +54,6 @@ function multiplicarMatrizes(){
         }
     }
 
-    //testar para ver se os valores não passam de 1.0
-
-    matrizDeTransicao.forEach((item, index) =>{
-        if(somaVetor(item) > 1){
-            throw new Error("Value bigger than 1")
-        }
-    })
-
-    if(somaVetor(matrizDeEstado) > 1){
-        throw new Error("Value bigger than 1")
-    }
 
     //atribuir resultado no vetor de resultado
     let vetorDeResultado = cs(".matrizDeResultado td");
